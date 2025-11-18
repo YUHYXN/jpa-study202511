@@ -1,9 +1,8 @@
 package com.codeit.jpastudy.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.codeit.jpastudy.chap01.entity.Product;
 import com.codeit.jpastudy.chap01.entity.Product.Category;
+import com.codeit.jpastudy.chap01.repository.JdbcProductRepository;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

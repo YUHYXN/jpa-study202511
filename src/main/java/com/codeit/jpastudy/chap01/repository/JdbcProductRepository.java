@@ -1,4 +1,4 @@
-package com.codeit.jpastudy.repository;
+package com.codeit.jpastudy.chap01.repository;
 
 import com.codeit.jpastudy.chap01.entity.Product;
 import java.net.URL;
@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
-@Repository
 public class JdbcProductRepository {
 
   // postGreSQL 연결정보

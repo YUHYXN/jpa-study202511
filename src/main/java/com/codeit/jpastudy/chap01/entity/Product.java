@@ -3,8 +3,9 @@ package com.codeit.jpastudy.chap01.entity;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter
+@Getter @Setter @ToString
 public class Product {
 
   private Long id;
