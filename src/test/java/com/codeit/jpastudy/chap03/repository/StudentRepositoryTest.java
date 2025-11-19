@@ -3,6 +3,7 @@ package com.codeit.jpastudy.chap03.repository;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.codeit.jpastudy.chap03.entity.Student;
+import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -46,10 +47,11 @@ class StudentRepositoryTest {
     void findByNameTest() {
         // given
         String name = "춘식이";
+        String city = "제주도";
         
         
         // when
-        List<Student> list = studentRepository.findByName(name);
+        List<Student> list = studentRepository.getStudentByNameOrCity(name);
 
         // then
         assertEquals(1, list.size());
@@ -58,6 +60,54 @@ class StudentRepositoryTest {
         System.out.println("\n\n\n");
 
         
+    }
+
+    @Test
+    @DisplayName("JPQL로 이름과 도시가 포함된 학생목록 조회하기")
+    void jpqlTest() {
+        // given
+        String name = "%춘%";
+        String city = "제주도";
+
+
+        // when
+        List<Tuple> students = studentRepository.searchByNameWithJPQL(name);
+
+
+
+        // then
+
+        System.out.println("\n\n\n");
+        for (Tuple tuple : students) {
+            String n = tuple.get("name", String.class);
+            String c = tuple.get("city", String.class);
+            System.out.println("n = " + n);
+            System.out.println("c = " + c);
+
+        }
+        System.out.println("\n\n\n");
+
+
+
+
+    }
+
+    @Test
+    @DisplayName("JPQL로 삭제해보기")
+    void deleteTestWithJPQL() {
+        // given
+        String name = "어피치";
+        String city = "제주도";
+
+
+        // when
+        studentRepository.deleteByNameAndCityWithJPQL(name, city);
+
+
+        // then
+        assertEquals(0, studentRepository.findByName(name).size()); // 장담하는데 어피치는 없다.( 사이즈 0이다. )
+
+
     }
 
 }
